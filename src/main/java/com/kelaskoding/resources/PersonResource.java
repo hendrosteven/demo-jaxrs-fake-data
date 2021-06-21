@@ -7,6 +7,7 @@ package com.kelaskoding.resources;
 
 import com.kelaskoding.model.Person;
 import com.kelaskoding.repository.PersonRepo;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,8 +30,8 @@ public class PersonResource {
     
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response findAll(){
-        return Response.ok(repo.findAll()).build();
+    public List<Person> findAll(){
+        return repo.findAll();
     }
     
     @GET
