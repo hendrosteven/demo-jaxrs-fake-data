@@ -8,6 +8,7 @@ package com.kelaskoding.resources;
 import com.kelaskoding.model.Person;
 import com.kelaskoding.repository.PersonRepo;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,11 +27,15 @@ import javax.ws.rs.core.Response;
 @Path("/persons")
 public class PersonResource {
     
-    private PersonRepo repo = new PersonRepo();
+    private PersonRepo repo = null;
+    
+    public PersonResource(){
+        this.repo = new PersonRepo();
+    }
     
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Person> findAll(){
+    public List<Person> findAll(){       
         return repo.findAll();
     }
     
@@ -44,7 +49,7 @@ public class PersonResource {
     @POST
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createOne(Person person){
+    public Response createOne(Person person){       
         return Response.ok(repo.createOne(person)).build();
     }
     

@@ -15,22 +15,13 @@ import java.util.List;
  */
 public class PersonRepo {
     
-    private final List<Person> persons = new ArrayList<>();
-    
-    public PersonRepo(){
-        persons.add(new Person(1,"Hendro", "hendro@gmail.com","234234234","Jakarta"));
-        persons.add(new Person(2,"Steven", "steve@gmail.com","3456456","Bandung"));
-        persons.add(new Person(3,"Budi", "budi@gmail.com","4534364564","Bandung"));
-        persons.add(new Person(4,"Hendro Steven", "hendro.steven@gmail.com","678453453","Bogor"));
-        persons.add(new Person(5,"Sari", "sari@gmail.com","23454374567","Jakarta"));        
-    }
     
     public List<Person> findAll(){
-        return this.persons;
+        return DataSource.persons;
     }
     
     public Person findById(int id){
-        for(Person person : this.persons){
+        for(Person person : DataSource.persons){
             if(person.getId()== id){
                 return person;
             }
@@ -39,22 +30,22 @@ public class PersonRepo {
     }
     
     public Person createOne(Person person){
-        person.setId(this.persons.size()+1);
-        this.persons.add(person);
+        person.setId(DataSource.persons.size()+1);
+        DataSource.persons.add(person);
         return person;
     }
     
     public void removeById(int id){
-        for(Person person : this.persons){
+        for(Person person : DataSource.persons){
             if(person.getId()== id){
-                this.persons.remove(person);
+                DataSource.persons.remove(person);
                 break;
             }
         }
     }
     
     public Person update(int id, Person person){
-        for(Person p : this.persons){
+        for(Person p : DataSource.persons){
             if(p.getId()== id){
                 p.setName(person.getName());
                 p.setEmail(person.getEmail());
